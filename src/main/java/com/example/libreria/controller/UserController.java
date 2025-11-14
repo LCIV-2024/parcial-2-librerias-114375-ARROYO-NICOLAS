@@ -20,29 +20,39 @@ public class UserController {
     
     @PostMapping
     public ResponseEntity<UserResponseDTO> createUser(@Valid @RequestBody UserRequestDTO requestDTO) {
-       // TODO: Implementar la creación de un usuario
+        // TODO: Implementar la creación de un usuario - LISTO
+        UserResponseDTO createdUser = userService.createUser(requestDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
     
     @GetMapping("/{id}")
     public ResponseEntity<UserResponseDTO> getUserById(@PathVariable Long id) {
-        // TODO: Implementar la obtención de un usuario por su ID
+        // TODO: Implementar la obtención de un usuario por su ID - LISTO
+        UserResponseDTO user = userService.getUserById(id);
+        return ResponseEntity.ok(user);
     }
     
     @GetMapping
     public ResponseEntity<List<UserResponseDTO>> getAllUsers() {
-        //TODO: Implementar la obtención de todos los usuarios
+        //TODO: Implementar la obtención de todos los usuarios - LISTO
+        List<UserResponseDTO> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
     }
     
     @PutMapping("/{id}")
     public ResponseEntity<UserResponseDTO> updateUser(
             @PathVariable Long id,
             @Valid @RequestBody UserRequestDTO requestDTO) {
-        //TODO: Implementar la actualización de un usuario
+        //TODO: Implementar la actualización de un usuario - LISTO
+        UserResponseDTO updatedUser = userService.updateUser(id, requestDTO);
+        return ResponseEntity.ok(updatedUser);
     }
     
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-        //TODO: Implementar la eliminación de un usuario
+        //TODO: Implementar la eliminación de un usuario - LISTO
+        userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
     }
 }
 
